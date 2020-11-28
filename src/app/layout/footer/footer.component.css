@@ -1,0 +1,14 @@
+.fixed-footer {
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  font-size: small;
+  position: fixed;
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+  bottom: 0px;
+}
+a {
+  color: #fff;
+}

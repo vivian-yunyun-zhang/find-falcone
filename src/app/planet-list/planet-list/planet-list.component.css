@@ -1,0 +1,17 @@
+.list-title {
+  color: #212121;
+  background-color: #bdbdbd;
+  left: 0;
+  right: 0;
+  padding-top: 80px;
+  height: 110px;
+  display: block;
+  font-size: 200%;
+  text-decoration: bold;
+  text-align: center;
+}
+.planet-list {
+  margin: auto;
+  width: 300px;
+  padding: 10px;
+}

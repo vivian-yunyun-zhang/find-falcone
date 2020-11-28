@@ -1,0 +1,22 @@
+.header-menu {
+  padding: 0;
+  width: 100%;
+  display: inline-block;
+}
+mat-nav-list.list-horizontal {
+  display: flex;
+  float: left;
+  padding: 0;
+  width: auto;
+  flex-direction: row;
+}
+.list-item {
+  width: auto;
+  text-align: center;
+}
+.list-divider {
+  height: 50px;
+}
+.list-link {
+  text-align: center;
+}

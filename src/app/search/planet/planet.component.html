@@ -1,0 +1,19 @@
+
+<mat-label>Select {{current_planet_no}} of {{total_no_planets}} planets you want to search:</mat-label>
+<form class="planet-form">
+  <!-- <button (click)="clearPlanetSelection()">clear</button> -->
+    <mat-form-field class="dropdown-full-width">
+      <input type="text"
+             placeholder="Pick a planet"
+             aria-label="Number"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name" [disabled]="option.disable">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
