@@ -15,7 +15,7 @@ describe('SpaceShipMessageService', () => {
   });
 
   it('should clear message', () => {
-    service.sendMessage("act","add");
+    service.sendMessage("this message");
     service.clearMessages();
     
     service.getMessage().subscribe(mes=>expect(mes).toBeNaN());

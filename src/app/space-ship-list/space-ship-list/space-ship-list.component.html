@@ -1,16 +1,17 @@
-<!-- <h1>Space Vehicle List</h1> -->
-<div class="list-title">Space Vehicle List</div>
-<mat-progress-spinner mode="indeterminate" *ngIf="IsWait" class="vehicle-list">
-</mat-progress-spinner>
-<div *ngIf="!IsWait" class="vehicle-list">
-    <ul *ngFor="let spaceship of spaceShips">
-        <li>{{spaceship.name}}
-            <ul>
-                <li>Quantity: {{spaceship.total_no}}</li>
-                <li>Max distance: {{spaceship.max_distance}} megamiles</li>
-                <li>Speed: {{spaceship.speed}} megamiles/hour</li>
-            </ul>
-        </li>
-    </ul>
+<div class="space-list">
+    <div class="list-title">Space Vehicle List</div>
+    <mat-progress-spinner mode="indeterminate" *ngIf="IsWait" class="vehicle-list">
+    </mat-progress-spinner>
+    <div *ngIf="!IsWait" class="vehicle-list">
+        <ul *ngFor="let spaceship of spaceShips" class="horizontal">
+            <li class="horizontal">
+                <img src="../../../assets/images/{{spaceship.name}}.jpg" width="60" height="60">
+                <ul>
+                    <li class="block">Quantity: {{spaceship.total_no}}</li>
+                    <li class="block">Max distance: {{spaceship.max_distance}} megamiles</li>
+                    <li class="block">Speed: {{spaceship.speed}} megamiles/hour</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>
-

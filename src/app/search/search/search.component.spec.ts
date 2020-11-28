@@ -119,14 +119,17 @@ describe('SearchComponent', () => {
    });
 
    it('#addSS()', () => {
+    component.updatedSpaceShips=[new SpaceShip('Space pod',2,200,2)];
     component.spaceShipNames=[];
     component.planetNames=["Donlon"];
     component.addSS({planet:"Donlon",value:"Space pod"});
 
     expect(component.spaceShipNames[0]).toBe("Space pod");
+    expect(component.updatedSpaceShips[0].total_no).toBe(1);
    });
 
    it('#addSS() when planet is NOT in planetNames', () => {
+    component.updatedSpaceShips=[new SpaceShip('Space pod',1,200,2)];
     component.spaceShipNames=[];
     component.planetNames=["Donlon"];
     component.addSS({planet:"Enchai",value:"Space pod"});
@@ -134,20 +137,33 @@ describe('SearchComponent', () => {
     expect(component.spaceShipNames[0]).not.toBe("Space pod");
    });
 
+   it('#addSS() when spaceship is NOT in updatedSpaceShipNames', () => {
+    component.updatedSpaceShips=[new SpaceShip('Space pod',1,200,2)];
+    component.spaceShipNames=[];
+    component.planetNames=["Donlon"];
+    component.addSS({planet:"Enchai",value:"Space rocket"});
+
+    expect(component.spaceShipNames[0]).not.toBe("Space pod");
+   });
+
    it('#removeSS()', () => {
+    component.updatedSpaceShips=[new SpaceShip('Space pod',1,200,2)];
     component.spaceShipNames=["Space pod"];
     component.planetNames=["Donlon"];
     component.removeSS({planet:"Donlon",value:"Space pod"});
 
     expect(component.spaceShipNames[0]).not.toBe("Space pod");
+    expect(component.updatedSpaceShips[0].total_no).toBe(2);
    });
 
    it('#removeSS() when vehicle is NOT in spaceShipNames', () => {
+    component.updatedSpaceShips=[new SpaceShip('Space pod',1,200,2)];
     component.spaceShipNames=["Space pod"];
     component.planetNames=["Donlon"];
     component.removeSS({planet:"Donlon",value:"Space ship"});
 
     expect(component.spaceShipNames[0]).toBe("Space pod");
+    expect(component.updatedSpaceShips[0].total_no).toBe(1);
    });
 
    it('#clearShipMessage() ', () => {

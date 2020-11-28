@@ -1,12 +1,12 @@
 <label id="space-ship-radio-group-label">Pick a space ship:</label>
-<!-- <mat-progress-spinner mode="indeterminate" *ngIf="IsWait">
-</mat-progress-spinner> -->
+
 <div >
   <mat-radio-group [(ngModel)]="shipRadio"
     aria-labelledby="space-ship-radio-group-label"
     class="space-ship-radio-group">
     <mat-radio-button class="space-ship-radio-button" *ngFor="let spaceShip of spaceShips" 
-    [value]="spaceShip.name" [disabled]="spaceShip.max_distance<currentPlanet.distance || spaceShip.total_no==0" (change)="radioChange($event)">
+    [value]="spaceShip.name" [disabled]="spaceShip.max_distance<currentPlanet.distance || spaceShip.total_no==0" 
+    (change)="radioChange($event)">
       {{spaceShip.name}} ({{spaceShip.total_no}})
     </mat-radio-button>
   </mat-radio-group>

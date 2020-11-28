@@ -1,35 +1,36 @@
-<!-- <h1>Finding Falcone!</h1> -->
-<div class="search-title">Finding Falcone!</div>
-<mat-progress-spinner mode="indeterminate" *ngIf="!IsPlanetComp||!IsSSComp">
-</mat-progress-spinner>
-<div [style.display]="(IsPlanetComp&&IsSSComp)?'block':'none'">
-  <div fxLayout="row" fxLayoutAlign="space-evenly center">
-    <h3>Total Time Taken <span class="bold-text">{{totalTime}}</span> hours.</h3>
+<div class="search-view">
+  <div class="search-title">Finding Falcone!</div>
+  <mat-progress-spinner mode="indeterminate" *ngIf="!IsPlanetComp||!IsSSComp">
+  </mat-progress-spinner>
+  <div [style.display]="(IsPlanetComp&&IsSSComp)?'block':'none'">
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <h3>Total Time Taken <span class="bold-text">{{totalTime}}</span> hours.</h3>
 
-  </div>
+    </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div *ngFor="let n of total_no_planets;index as i" >
-      <div class="block" [style.display]="(n<=spaceShipNames.length+1)?'block':'none'">
-        <app-planet #planet [total_no_planets]="total_no_planets.length" 
-                            [current_planet_no]="n" 
-                            
-          (clearRadioButtonEvent)="ship.clearRadioButtonSelection()"
-          (newPlanetEvent)="addPlanet($event)" 
-          (removePlanetEvent)="removePlanet($event)"
-          [planets]="planets"></app-planet>
+    <div fxLayout="row" fxLayoutAlign="space-around center">
+      <div *ngFor="let n of total_no_planets;index as i" >
+        <div class="block" [style.display]="(n<=spaceShipNames.length+1)?'block':'none'">
+          <app-planet #planet [total_no_planets]="total_no_planets.length" 
+                              [current_planet_no]="n" 
+                              
+            (clearRadioButtonEvent)="ship.clearRadioButtonSelection()"
+            (newPlanetEvent)="addPlanet($event)" 
+            (removePlanetEvent)="removePlanet($event)"
+            [planets]="planets"></app-planet>
 
-        <app-space-ship #ship [currentPlanet]="planet.selectedPlanet"
-          (newSSEvent)="addSS($event)" 
-          (removeSSEvent)="removeSS($event)"
-          [spaceShips]="spaceShips"></app-space-ship>
-        
+          <app-space-ship #ship [currentPlanet]="planet.selectedPlanet"
+            (newSSEvent)="addSS($event)" 
+            (removeSSEvent)="removeSS($event)"
+            [spaceShips]="spaceShips"></app-space-ship>
+          
+        </div>
       </div>
     </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <button mat-raised-button (click)="resetSelection()" class="btn-reset" >RESET</button>
-    <button mat-raised-button disabled [disabled]="spaceShipNames.length<4||planetNames.length<4" class="btn-launch" (click)="onClickLaunch()">LAUNCH</button>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <button mat-raised-button (click)="resetSelection()" class="btn-reset" >RESET</button>
+      <button mat-raised-button disabled [disabled]="spaceShipNames.length<4||planetNames.length<4" class="btn-launch" (click)="onClickLaunch()">LAUNCH</button>
 
+    </div>
   </div>
 </div>

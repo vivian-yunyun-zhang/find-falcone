@@ -51,18 +51,8 @@ describe('SpaceShipComponent', () => {
 
   it('SpaceShipMessageService.getMessage() should update total_no property 2 to 1', () => {
     let service:SpaceShipMessageService = TestBed.get(SpaceShipMessageService);
-    let message:any={act:"add",message:"Space pod"};
+    let message:any={message:[new SpaceShip("Space pod",1,200,2)]};
     component.spaceShips = [new SpaceShip("Space pod",2,200,2)];
-    
-    spyOn(service,'getMessage').and.returnValue(of(message));
-    fixture.detectChanges();
-    expect(component.spaceShips[0].total_no).toBe(1);
-  });
-
-  it('SpaceShipMessageService.getMessage() should update total_no property 0 to 1', () => {
-    let service:SpaceShipMessageService = TestBed.get(SpaceShipMessageService);
-    let message:any={act:"remove",message:"Space pod"};
-    component.spaceShips = [new SpaceShip("Space pod",0,200,2)];
     
     spyOn(service,'getMessage').and.returnValue(of(message));
     fixture.detectChanges();
@@ -77,46 +67,6 @@ describe('SpaceShipComponent', () => {
     spyOn(service,'getMessage').and.returnValue(of(message));
     fixture.detectChanges();
     expect(component.spaceShips[0].total_no).toBe(0);
-  });
-
-  it('SpaceShipMessageService.getMessage() should NOT update total_no property when name NOT match', () => {
-    let service:SpaceShipMessageService = TestBed.get(SpaceShipMessageService);
-    let message:any={act:"remove",message:"Space pod"};
-    component.spaceShips = [new SpaceShip("Space rocket",0,200,2)];
-    
-    spyOn(service,'getMessage').and.returnValue(of(message));
-    fixture.detectChanges();
-    expect(component.spaceShips[0].total_no).toBe(0);
-  });
-
-  it('SpaceShipMessageService.getMessage() should NOT update total_no property when total_no <=0', () => {
-    let service:SpaceShipMessageService = TestBed.get(SpaceShipMessageService);
-    let message:any={act:"add",message:"Space pod"};
-    component.spaceShips = [new SpaceShip("Space pod",0,200,2)];
-    
-    spyOn(service,'getMessage').and.returnValue(of(message));
-    fixture.detectChanges();
-    expect(component.spaceShips[0].total_no).toBe(0);
-  });
-
-  it('SpaceShipMessageService.getMessage() should NOT update total_no property when act is NOT add or remove', () => {
-    let service:SpaceShipMessageService = TestBed.get(SpaceShipMessageService);
-    let message:any={act:"multiply",message:"Space pod"};
-    component.spaceShips = [new SpaceShip("Space pod",0,200,2)];
-    
-    spyOn(service,'getMessage').and.returnValue(of(message));
-    fixture.detectChanges();
-    expect(component.spaceShips[0].total_no).toBe(0);
-  });
-
-  it('should raise newSSEvent when a vehicle is selected', () => {
-    let newSS:any;
-    component.currentPlanet = new Planet("Donlon",100,false);
-    component.selectedSS = new SpaceShip("Space pod",2,200,2);
-    component.newSSEvent.subscribe(ns=>newSS = ns);
-    component.addNewSS("Space pod");
-    fixture.detectChanges();
-    expect(newSS.value).toBe("Space pod");
   });
 
   it('should raise removeSSEvent when another vehicle is selected', () => {

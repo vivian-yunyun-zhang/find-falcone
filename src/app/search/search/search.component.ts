@@ -24,6 +24,7 @@ export class SearchComponent implements OnInit {
   IsPlanetComp:boolean=false;
   planets:Planet[];
   spaceShips:SpaceShip[];
+  updatedSpaceShips:SpaceShip[];
   
   @ViewChildren(PlanetComponent) planetComponentChildren: QueryList<PlanetComponent>;
 
@@ -41,6 +42,7 @@ export class SearchComponent implements OnInit {
   getPlanets(){
     this.planetService.getPlanet().subscribe((planets:Planet[])=>{
       this.planets = planets;
+      
       //this.IsPlanetComp=true;
       if(this.planetComponentChildren)
         this.planetComponentChildren.forEach((child)=>{child.setPlanets();this.IsPlanetComp=true;});
@@ -50,6 +52,7 @@ export class SearchComponent implements OnInit {
   getSpaceships(){
     this.spaceShipService.getSpaceShips().subscribe((ss:SpaceShip[])=>{
       this.spaceShips = ss;
+      this.updatedSpaceShips = ss;
       this.IsSSComp=true;
       
     });
@@ -79,18 +82,6 @@ export class SearchComponent implements OnInit {
     this.pMessage.clearMessages();
   }
 
-  addShipMessage(m:string): void {
-    // send message to subscribers via observable subject
-    this.sMessage.sendMessage("add",m);
-    //console.log("sending ADD message to space ship comp:"+m);
-  }
-
-  removeShipMessage(m:string): void {
-    // send message to subscribers via observable subject
-    this.sMessage.sendMessage("remove",m);
-    //console.log("sending REMOVE message to space ship comp:"+m);
-  }
-
   clearShipMessages(): void {
     // clear messages
     this.sMessage.clearMessages();
@@ -113,33 +104,35 @@ export class SearchComponent implements OnInit {
     //  console.log("REMOVE planet:"+this.planetNames.join(","));
   }
 
-  addSS(newItem:any) {
-    
+  addSS(newItem:any){
     this.planetNames.map((p,index)=>{
       if(p==newItem.planet)
       this.spaceShipNames.splice(index, 0, newItem.value);
     });
-    
-    this.addShipMessage(newItem.value);
     this.totalTime=this.totalTime+newItem.time;
-    //  console.log("size of spacship array:"+this.spaceShipNames.length);
-    //  console.log("ADD SPACE SHIP:"+this.spaceShipNames.join(","));
+
+    this.updatedSpaceShips.map((ss)=>{
+      if(ss.name == newItem.value && ss.total_no>0){
+        ss.total_no--;
+      }
+    });
+    this.sMessage.sendMessage(this.updatedSpaceShips);
+
   }
 
-  removeSS(newItem:any) {
+  removeSS(newItem:any){
     const index: number = this.spaceShipNames.indexOf(newItem.value);
     if (index !== -1) {
         this.spaceShipNames.splice(index, 1);
     }
-    this.removeShipMessage(newItem.value);
     this.totalTime = this.totalTime - newItem.time;
-      // console.log("size of spacship array:"+this.spaceShipNames.length);
-      // console.log("REMOVE SPACE SHIP:"+this.spaceShipNames.join(","));
+
+    this.updatedSpaceShips.map((ss)=>{
+      if(ss.name == newItem.value){
+        ss.total_no++;
+      }
+    });
+    this.sMessage.sendMessage(this.updatedSpaceShips);
   }
-  // loadSSComplete(com:boolean){
-  //   this.IsSSComp=com;
-  // }
-  // loadPlanetComplete(com:boolean){
-  //   this.IsPlanetComp=com;
-  // }
+
 }

@@ -14,35 +14,20 @@ export class SpaceShipComponent implements OnInit,OnDestroy {
   selectedSS:SpaceShip;
   subscription: Subscription;
   shipRadio:any;
+  messageID:number;
   @Input() currentPlanet:Planet= new Planet("",0,false);
 
   constructor(private messageService:SpaceShipMessageService) { }
 
   ngOnInit(): void {
    
-     // subscribe to app component messages
+     //subscribe to spaceship messages service
     this.subscription = this.messageService.getMessage().subscribe(message => {
       if (message) {
-      //   console.log("act:"+message.act);
-      //  console.log("message:"+message.message);
-        this.spaceShips.map(p=>{
-          switch(message.act){
-            case "add":{
-              if(p.name==message.message&&p.total_no>0)
-                p.total_no--;
-              break;
-            }
-            case "remove":{
-              if(p.name==message.message)
-              p.total_no++;
-              break;
-            }
-            default:
-              break;
-          }
-        });
+        this.spaceShips=message.message;
       } 
     });
+    
   }
 
   ngOnDestroy() {
@@ -71,10 +56,10 @@ export class SpaceShipComponent implements OnInit,OnDestroy {
   }
 
   radioChange(event){
-   // console.log(event.source.name, event.value);
+    //console.log(event.source.name, event.value);
     if(event.value){
       if(this.selectedSS){
-        //console.log("this.selectedSS name:"+this.selectedSS.name+";total number:"+this.selectedSS.total_no);
+        console.log("this.selectedSS name:"+this.selectedSS.name+";total number:"+this.selectedSS.total_no);
         this.removeNewSS(this.selectedSS.name);
       }
       this.selectedSS = this.spaceShips.find(p=>p.name===event.value);
