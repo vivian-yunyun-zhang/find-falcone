@@ -1,5 +1,6 @@
 <div class="search-view">
-  <div class="search-title">Finding Falcone!</div>
+  <div class="search-title">Finding Falcone!
+  </div>
   <mat-progress-spinner mode="indeterminate" *ngIf="!IsPlanetComp||!IsSSComp">
   </mat-progress-spinner>
   <div [style.display]="(IsPlanetComp&&IsSSComp)?'block':'none'">
@@ -8,7 +9,8 @@
 
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="space-around center">
+    <!-- <div fxLayout="row" fxLayoutAlign="space-around center" class="flex-div"> -->
+      <div class="flex-div">
       <div *ngFor="let n of total_no_planets;index as i" >
         <div class="block" [style.display]="(n<=spaceShipNames.length+1)?'block':'none'">
           <app-planet #planet [total_no_planets]="total_no_planets.length" 

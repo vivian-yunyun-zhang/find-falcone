@@ -1,11 +1,12 @@
 <div class="p-list">
-    <div class="list-title">Planet List</div>
+    <div class="list-title">Planet List  
+    </div>
     <mat-progress-spinner mode="indeterminate" *ngIf="IsWait" class="planet-list">
     </mat-progress-spinner>
     <div *ngIf="!IsWait" class="planet-list">
         <ul *ngFor="let planet of planets" class="horizontal">
             <li class="horizontal">
-                <img src="../../../assets/images/{{planet.name}}.jpg" width="60" height="60">
+                <img src="../../assets/images/{{planet.name}}.jpg" width="60" height="60">
             </li>
             <li class="block">Distance: {{planet.distance}} megamiles</li>
                 

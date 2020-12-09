@@ -3,8 +3,8 @@
   background-color: #bdbdbd;
   left: 0;
   right: 0;
-  padding-top: 80px;
-  height: 110px;
+  padding-top: 10vh;
+  height: 10vh;
   display: block;
   font-size: 200%;
   text-decoration: bold;
@@ -24,5 +24,29 @@
 }
 .p-list {
   width: 100%;
-  height: 100%;
+  height: 95%;
+}
+
+@media only screen and (max-height: 750px) {
+  .p-list {
+    width: 100%;
+    height: auto;
+  }
+  .list-title {
+    font-size: 100%;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-height: 420px) {
+  .p-list {
+    width: 100%;
+    height: auto;
+  }
+  .list-title {
+    font-size: 100%;
+    font-weight: bold;
+    padding-top: 17vh;
+    height: 15vh;
+  }
 }

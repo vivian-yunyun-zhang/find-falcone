@@ -1,8 +1,10 @@
-.header-menu {
+/* .header-menu {
   padding: 0;
   width: 100%;
   display: inline-block;
-}
+  position: fixed;
+  top: 0;
+} */
 mat-nav-list.list-horizontal {
   display: flex;
   float: left;
@@ -19,4 +21,11 @@ mat-nav-list.list-horizontal {
 }
 .list-link {
   text-align: center;
+}
+.header-menu {
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  background-color: white;
 }

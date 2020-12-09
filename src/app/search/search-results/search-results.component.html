@@ -1,10 +1,11 @@
-<!-- <h1>Finding Falcone!</h1> -->
-<div class="search-title">Finding Falcone!</div>
-<mat-progress-spinner mode="indeterminate" *ngIf="IsWait">
-</mat-progress-spinner>
-<div fxLayout="column" fxLayoutAlign="space-evenly center" *ngIf="!IsWait">
-    <h3>{{search_message}}</h3>
-    <h3>Total Time Taken {{totalTime}} hours.</h3>
-    <h3>{{found_planet}}</h3>
-    <button mat-raised-button (click)="startAgain()" class="btn-reset" >START AGAIN</button>
+<div class="search-result">
+    <div class="search-title">Finding Falcone!</div>
+    <mat-progress-spinner mode="indeterminate" *ngIf="IsWait">
+    </mat-progress-spinner>
+    <div fxLayout="column" fxLayoutAlign="space-evenly center" *ngIf="!IsWait">
+        <h3>{{search_message}}</h3>
+        <h3>Total Time Taken {{totalTime}} hours.</h3>
+        <h3>{{found_planet}}</h3>
+        <button mat-raised-button (click)="startAgain()" class="btn-reset" >START AGAIN</button>
+    </div>
 </div>

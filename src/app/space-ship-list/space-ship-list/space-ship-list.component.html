@@ -5,7 +5,7 @@
     <div *ngIf="!IsWait" class="vehicle-list">
         <ul *ngFor="let spaceship of spaceShips" class="horizontal">
             <li class="horizontal">
-                <img src="../../../assets/images/{{spaceship.name}}.jpg" width="60" height="60">
+                <img src="../../assets/images/{{spaceship.name}}.jpg" width="60" height="60">
                 <ul>
                     <li class="block">Quantity: {{spaceship.total_no}}</li>
                     <li class="block">Max distance: {{spaceship.max_distance}} megamiles</li>

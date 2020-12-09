@@ -4,18 +4,20 @@ h1 {
   width: auto;
   text-align: center;
 }
+
 .search-title {
   color: #212121;
   background-color: #bdbdbd;
   left: 0;
   right: 0;
-  padding-top: 80px;
-  height: 110px;
+  padding-top: 10vh;
+  height: 10vh;
   display: block;
   font-size: 200%;
   text-decoration: bold;
   text-align: center;
 }
+
 .mat-progress-spinner {
   margin: auto;
 }
@@ -48,5 +50,44 @@ h3 {
 }
 .search-view {
   width: 100%;
-  height: 100%;
+  height: 95%;
+}
+.flex-div {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+@media only screen and (max-height: 750px) {
+  .search-view {
+    width: 100%;
+    height: auto;
+  }
+  .search-title {
+    font-size: 100%;
+    font-weight: bold;
+  }
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-height: 420px) {
+  .search-view {
+    width: 100%;
+    height: auto;
+  }
+  .search-title {
+    font-size: 100%;
+    font-weight: bold;
+    padding-top: 17vh;
+    height: 15vh;
+  }
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
